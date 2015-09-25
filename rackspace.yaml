@@ -1,0 +1,27 @@
+schema-version: 1.0.0
+application-family: Data Analytics
+application-name: Trusted Analytics Platform
+application-version: 1
+flavor: Basic
+flavor-weight: 1
+user-input-required: true
+reach-info:
+  tattoo: https://0b5294b243620310a700-e388a7f3aba385a925111b1fc6f680d4.ssl.cf2.rackcdn.com/magento-tattoo.png
+  icon-20x20: https://0b5294b243620310a700-e388a7f3aba385a925111b1fc6f680d4.ssl.cf2.rackcdn.com/magento-icon-20x20.png
+hidden_outputs:
+  - private_key
+  - password
+abstract: |
+  A Platform-as-a-Service cloud stack for data scientists and application developers.
+description: |
+  A Platform-as-a-Service cloud stack for data scientists and application developers to
+  build and operate domain-specific applications driven by data analysis at scale.
+
+  This deployment is intended for simple usages and getting familiar with the platform.
+  It is not  designed for production grade usages.
+instructions: |
+  #### Getting Started
+
+  If you're new to Trusted Analytics Platform, the
+  [Trusted Analytics Platform Wiki](https://github.com/trustedanalytics/platform-wiki/wiki)
+  will  guide you through the platform usages and configuration. 
