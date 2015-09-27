@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+---
+
 heat_template_version: 2014-10-16
 
 description: |
@@ -20,9 +22,9 @@ description: |
   Trusted Analytics Platform is a Platform-as-a-Service cloud stack for data
   scientists and application developers to build & operate domain-specific
   applications driven by data analysis at scale.
-  
+
   This deployment is intended for simple usages and getting familiar with the platform.
-  It is not  designed for production grade usages.
+  It is not designed for production grade usages.
 
 parameter_groups:
 
@@ -58,7 +60,6 @@ parameters:
     label: Server Size
     type: string
     default: 30 GB I/O v1
-    description: Server size for the Hadoop server
     constraints:
       - allowed_values:
         - 30 GB Compute v1
@@ -91,17 +92,14 @@ parameters:
   cloudfoundry_flavor:
     label: Server Size
     type: string
-    default: 30 GB Memory v1
-    description: Server size for the applications server
+    default: 60 GB Memory v1
+    description: Server size for the Applications server
     constraints:
       - allowed_values:
-        - 30 GB Compute v1
         - 60 GB Compute v1
-        - 30 GB Memory v1
         - 60 GB Memory v1
         - 120 GB Memory v1
         - 240 GB Memory v1
-        - 30 GB I/O v1
         - 60 GB I/O v1
         - 90 GB I/O v1
         - 120 GB I/O v1
@@ -114,7 +112,7 @@ parameters:
     label: Volume Size
     type: number
     default: 120
-    description: Disk size for the applications server
+    description: Disk size for the Applications server
     constraints:
       - range: { min: 120, max: 3072 }
 
@@ -285,7 +283,7 @@ resources:
                   unzip one-click-deployment-master.zip
 
                   cd one-click-deployment-master/ansible/
-                  ansible-playbook --extra-vars "cloudfoundry_admin_password=%password%" --limit $HOSTNAME ${HOSTNAME}.yml
+                  ansible-playbook --extra-vars "cf_admin_password=%password%" --limit $HOSTNAME ${HOSTNAME}.yml
 
                   wc_notify --data-binary '{"status": "SUCCESS"}'
             runcmd:
