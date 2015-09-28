@@ -330,6 +330,14 @@ outputs:
     description: SSH Private Key
     value: { get_attr: [ssh_key, private_key] }
 
+  hadoop_server_ip:
+    description: IP address of the Hadoop server
+    value: { get_attr: [ cloudera_server, accessIPv4 ] }
+
+  application_server_ip:
+    description: IP address of the Application server
+    value: { get_attr: [ cloudfoundry_server, accessIPv4 ] }
+
   console:
     value:
       str_replace:

@@ -1,0 +1,32 @@
+test-cases:
+- name: Default Build Test # Deploy using all default options
+  create:
+    timeout: 300 # Deployment should complete in under 300 minutes (5 hours!)
+  resource_tests:
+    ssh_private_key: { get_output: private_key } # Fetch from output-list of stack
+    ssh_key_file: tmp/private_key # File to write with ssh_private_key
+    tests:
+    - application_server:
+        fabric:
+          env:
+            user: root
+            key_filename: tmp/private_key
+            hosts: { get_output: application_server_ip } # Fetch from output-list of stack
+            tasks:
+            - artifacts
+            abort_on_prompts: True
+            connection_attempts: 3
+            disable_known_hosts: True
+            use_ssh_config: True
+    - hadoop_server:
+        fabric:
+          env:
+            user: root
+            key_filename: tmp/private_key
+            hosts: { get_output: hadoop_server_ip } # Fetch from output-list of stack
+            tasks:
+            - artifacts
+            abort_on_prompts: True
+            connection_attempts: 3
+            disable_known_hosts: True
+            use_ssh_config: True
