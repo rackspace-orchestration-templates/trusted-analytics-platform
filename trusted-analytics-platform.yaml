@@ -189,14 +189,24 @@ resources:
                 content: |
                   #!/bin/bash
 
-                  set -e
+                  function senderr {
+                      wc_notify --data-binary '{"status": "FAILURE", "reason": "$1", "data": "$2"}'
+                      exit 1
+                  }
 
                   wget -O one-click-deployment-master.zip %one_click_deployment_master%
+                  if [ "$?" -ne 0 ]; then
+                     senderr "Error downloading deployment master archive."
+                  fi
                   unzip one-click-deployment-master.zip
-
+                  if [ "$?" -ne 0 ]; then
+                     senderr "Error extracting deployment master archive."
+                  fi
                   cd one-click-deployment-master/ansible/
-                  ansible-playbook --limit $HOSTNAME --sudo ${HOSTNAME}.yml
-
+                  ansible-playbook -v --limit $HOSTNAME --sudo ${HOSTNAME}.yml &>ansible.log
+                  if [ "$?" -ne 0 ]; then
+                     senderr "Error configuring server" "$(<ansible.log)"
+                  fi
                   wc_notify --data-binary '{"status": "SUCCESS"}'
             runcmd:
               - /tmp/cloudera.sh
@@ -282,15 +292,25 @@ resources:
                 permissions: '0544'
                 content: |
                   #!/bin/bash
-
-                  set -e
+                  
+                  function senderr {
+                      wc_notify --data-binary '{"status": "FAILURE", "reason": "$1", "data": "$2"}'
+                      exit 1
+                  }
 
                   wget -O one-click-deployment-master.zip %one_click_deployment_master%
+                  if [ "$?" -ne 0 ]; then
+                     senderr "Error downloading deployment master archive."
+                  fi
                   unzip one-click-deployment-master.zip
-
+                  if [ "$?" -ne 0 ]; then
+                     senderr "Error extracting deployment master archive."
+                  fi
                   cd one-click-deployment-master/ansible/
-                  ansible-playbook --extra-vars "cf_admin_password=%password%" --limit $HOSTNAME --sudo ${HOSTNAME}.yml
-
+                  ansible-playbook -v --extra-vars "cf_admin_password=%password%" --limit $HOSTNAME --sudo ${HOSTNAME}.yml &>ansible.log
+                  if [ "$?" -ne 0 ]; then
+                     senderr "Error configuring server" "$(<ansible.log)"
+                  fi
                   wc_notify --data-binary '{"status": "SUCCESS"}'
             runcmd:
               - /tmp/cloudfoundry.sh
