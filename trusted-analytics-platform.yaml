@@ -203,11 +203,11 @@ resources:
                      senderr "Error extracting deployment master archive."
                   fi
                   cd one-click-deployment-master/ansible/
-                  ansible-playbook -v --limit $HOSTNAME --sudo ${HOSTNAME}.yml &>ansible.log
+                  ansible-playbook -v --limit $HOSTNAME --sudo ${HOSTNAME}.yml
                   if [ "$?" -ne 0 ]; then
-                     senderr "Error configuring server" "$(<ansible.log)"
+                     senderr "Error configuring server"
                   fi
-                  wc_notify --data-binary '{"status": "SUCCESS", "data": "'"$(<ansible.log)"'"}'
+                  wc_notify --data-binary '{"status": "SUCCESS"}'
             runcmd:
               - /tmp/cloudera.sh
           params:
@@ -307,11 +307,11 @@ resources:
                      senderr "Error extracting deployment master archive."
                   fi
                   cd one-click-deployment-master/ansible/
-                  ansible-playbook -v --extra-vars "cf_admin_password=%password%" --limit $HOSTNAME --sudo ${HOSTNAME}.yml &>ansible.log
+                  ansible-playbook -v --extra-vars "cf_admin_password=%password%" --limit $HOSTNAME --sudo ${HOSTNAME}.yml
                   if [ "$?" -ne 0 ]; then
-                     senderr "Error configuring server" "$(<ansible.log)"
+                     senderr "Error configuring server"
                   fi
-                  wc_notify --data-binary '{"status": "SUCCESS", "data": "'"$(<ansible.log)"'"}'
+                  wc_notify --data-binary '{"status": "SUCCESS"}'
             runcmd:
               - /tmp/cloudfoundry.sh
           params:
