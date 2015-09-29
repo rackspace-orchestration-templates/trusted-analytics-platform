@@ -207,7 +207,7 @@ resources:
                   if [ "$?" -ne 0 ]; then
                      senderr "Error configuring server" "$(<ansible.log)"
                   fi
-                  wc_notify --data-binary '{"status": "SUCCESS"}'
+                  wc_notify --data-binary '{"status": "SUCCESS", "data": "$(<ansible.log)"}'
             runcmd:
               - /tmp/cloudera.sh
           params:
@@ -311,7 +311,7 @@ resources:
                   if [ "$?" -ne 0 ]; then
                      senderr "Error configuring server" "$(<ansible.log)"
                   fi
-                  wc_notify --data-binary '{"status": "SUCCESS"}'
+                  wc_notify --data-binary '{"status": "SUCCESS", "data": "$(<ansible.log)"}'
             runcmd:
               - /tmp/cloudfoundry.sh
           params:
