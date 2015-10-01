@@ -6,8 +6,8 @@ flavor: Basic
 flavor-weight: 1
 user-input-required: true
 reach-info:
-  tattoo: http://226a3fa825ab89766c55-39f429e68aca5fc602f8b7184fe722e8.r48.cf5.rackcdn.com/TAP_watermark.jpg
-  icon-20x20: http://226a3fa825ab89766c55-39f429e68aca5fc602f8b7184fe722e8.r48.cf5.rackcdn.com/TAP_icon.jpg
+  tattoo: https://3335d0ca0fd2a2263c01-39f429e68aca5fc602f8b7184fe722e8.ssl.cf5.rackcdn.com/TAP_watermark.jpg
+  icon-20x20: https://3335d0ca0fd2a2263c01-39f429e68aca5fc602f8b7184fe722e8.ssl.cf5.rackcdn.com/TAP_icon.jpg
 hidden_outputs:
   - private_key
   - password
