@@ -18,6 +18,7 @@ test-cases:
             connection_attempts: 3
             disable_known_hosts: True
             use_ssh_config: True
+            fabfile: test/fabric/tap.py # Path to envassert test
     - hadoop_server:
         fabric:
           env:
@@ -30,3 +31,4 @@ test-cases:
             connection_attempts: 3
             disable_known_hosts: True
             use_ssh_config: True
+            fabfile: test/fabric/tap.py # Path to envassert test
