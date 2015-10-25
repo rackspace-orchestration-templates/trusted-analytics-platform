@@ -118,10 +118,10 @@ parameters:
   cloudfoundry_size:
     label: Volume Size
     type: number
-    default: 120
+    default: 150
     description: Disk size for the Applications server
     constraints:
-      - range: { min: 120, max: 3072 }
+      - range: { min: 150, max: 3072 }
 
 resources:
 
