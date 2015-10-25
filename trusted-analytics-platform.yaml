@@ -141,7 +141,7 @@ resources:
     type: OS::Heat::SwiftSignal
     properties:
       handle: { get_resource: cloudera_wait_condition_handle }
-      timeout: 3600
+      timeout: 7200
 
   cloudera_wait_condition_handle:
     type: OS::Heat::SwiftSignalHandle
@@ -240,7 +240,7 @@ resources:
     type: OS::Heat::SwiftSignal
     properties:
       handle: { get_resource: cloudfoundry_wait_condition_handle }
-      timeout: 14400
+      timeout: 7200
 
   cloudfoundry_wait_condition_handle:
     type: OS::Heat::SwiftSignalHandle
